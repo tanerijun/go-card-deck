@@ -46,3 +46,22 @@ func TestNew(t *testing.T) {
 		}
 	}
 }
+
+func TestDefaultSort(t *testing.T) {
+	cards := New(DefaultSort)
+	expected := Card{Rank: Ace, Suit: Spade}
+	if cards[0] != expected {
+		t.Errorf("Expected %s, got %s", expected, cards[0])
+	}
+}
+
+func TestSort(t *testing.T) {
+	// Cards sorted in reverse
+	cards := New(Sort(func(cards []Card) func(i, j int) bool {
+		return func(i, j int) bool { return AbsRank(cards[i]) > AbsRank((cards[j])) }
+	}))
+	expected := Card{Rank: King, Suit: Heart}
+	if cards[0] != expected {
+		t.Errorf("Expected %s, got %s", expected, cards[0])
+	}
+}
