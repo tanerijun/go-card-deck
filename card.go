@@ -153,6 +153,7 @@ func Jokers(n int) func([]Card) []Card {
 	}
 }
 
+// Filter take in a predicate to filter the deck
 func Filter(f func(card Card) bool) func([]Card) []Card {
 	return func(cards []Card) []Card {
 		var res []Card
@@ -160,6 +161,17 @@ func Filter(f func(card Card) bool) func([]Card) []Card {
 			if !f(c) {
 				res = append(res, c)
 			}
+		}
+		return res
+	}
+}
+
+// Deck return multiple decks
+func Deck(n int) func([]Card) []Card {
+	return func(cards []Card) []Card {
+		var res []Card
+		for i := 0; i < n; i++ {
+			res = append(res, cards...)
 		}
 		return res
 	}
