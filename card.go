@@ -65,7 +65,7 @@ func (c Card) String() string {
 //
 //	func([]Card) []Card
 //
-// There're also some default helpers shipped with the API. For example: DefaultSort, Sort, Shuffle, etc.
+// There're also some default helpers shipped with the API. For example: DefaultSort, Sort, Shuffle, Jokers, Filter, etc.
 //
 // Example: Sorting in order
 //
@@ -76,6 +76,10 @@ func (c Card) String() string {
 //	cards := New(Sort(func(cards []Card) func(i, j int) bool {
 //		return func(i, j int) bool { return AbsRank(cards[i]) > AbsRank((cards[j])) }
 //	}))
+//
+// Example: Adding 3 Jokers
+//
+//	cards := New(Jokers(3))
 func New(opts ...func([]Card) []Card) []Card {
 	var cards []Card
 	for _, suit := range suits {
