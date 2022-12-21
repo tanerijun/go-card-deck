@@ -75,3 +75,17 @@ func TestShuffle(t *testing.T) {
 		t.Error("Equal value after shuffling")
 	}
 }
+
+func TestJokers(t *testing.T) {
+	cards := New(Jokers(4))
+	jokerCount := 0
+	for _, c := range cards {
+		if c.Suit == Joker {
+			jokerCount++
+		}
+	}
+
+	if jokerCount != 4 {
+		t.Error("Expected 4 Jokers, got", jokerCount)
+	}
+}

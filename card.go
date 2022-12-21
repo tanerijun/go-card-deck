@@ -133,3 +133,18 @@ func Shuffle(cards []Card) []Card {
 	})
 	return cards
 }
+
+// Jokers take in the number of Jokers you want in the deck as a parameter
+// and return an option function that you can pass to the New function.
+//
+// Example: 4 Jokers in deck
+//
+//	New(Jokers(4))
+func Jokers(n int) func([]Card) []Card {
+	return func(cards []Card) []Card {
+		for i := 0; i < n; i++ {
+			cards = append(cards, Card{Rank: Rank(i), Suit: Joker})
+		}
+		return cards
+	}
+}
