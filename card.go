@@ -63,7 +63,17 @@ func (c Card) String() string {
 //
 //	func([]Card) []Card
 //
-// There're also some default helpers shipped with the API. For example: DefaultSort, Sort, etc.
+// There're also some default helpers shipped with the API. For example: DefaultSort, Sort, Shuffle, etc.
+//
+// Example: Sorting in order
+//
+//	cards := New(DefaultSort)
+//
+// Example: Sorting in reverse order
+//
+//	cards := New(Sort(func(cards []Card) func(i, j int) bool {
+//		return func(i, j int) bool { return AbsRank(cards[i]) > AbsRank((cards[j])) }
+//	}))
 func New(opts ...func([]Card) []Card) []Card {
 	var cards []Card
 	for _, suit := range suits {
