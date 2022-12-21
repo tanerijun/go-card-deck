@@ -2,6 +2,7 @@ package deck
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -63,5 +64,14 @@ func TestSort(t *testing.T) {
 	expected := Card{Rank: King, Suit: Heart}
 	if cards[0] != expected {
 		t.Errorf("Expected %s, got %s", expected, cards[0])
+	}
+}
+
+func TestShuffle(t *testing.T) {
+	expectedCards := New(DefaultSort)
+	shuffledCards := New(Shuffle)
+
+	if reflect.DeepEqual(shuffledCards, expectedCards) {
+		t.Error("Equal value after shuffling")
 	}
 }

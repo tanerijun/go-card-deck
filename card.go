@@ -4,7 +4,9 @@ package deck
 
 import (
 	"fmt"
+	"math/rand"
 	"sort"
+	"time"
 )
 
 type Suit uint8
@@ -121,4 +123,13 @@ func Sort(less func(cards []Card) func(i, j int) bool) func([]Card) []Card {
 // The rank of any Spade card will never be above Diamond.
 func AbsRank(c Card) int {
 	return int(c.Suit)*int(maxRank) + int(c.Rank)
+}
+
+// Shuffle shuffle cards in deck
+func Shuffle(cards []Card) []Card {
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(cards), func(i, j int) {
+		cards[i], cards[j] = cards[j], cards[i]
+	})
+	return cards
 }
