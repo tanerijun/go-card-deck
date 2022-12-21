@@ -1,6 +1,9 @@
 package deck
 
-import "fmt"
+import (
+	"fmt"
+	"testing"
+)
 
 func ExampleCard() {
 	fmt.Println(Card{Rank: Ace, Suit: Heart})
@@ -15,4 +18,31 @@ func ExampleCard() {
 	// Nine of Diamonds
 	// Jack of Clubs
 	// Joker
+}
+
+func TestNew(t *testing.T) {
+	cards := New()
+	if len(cards) != 13*4 {
+		t.Errorf("Expected New to return 52 cards, got %d", len(cards))
+	}
+
+	for i := 0; i < len(cards); i++ {
+		if i <= 12 {
+			if cards[i].Suit != Spade {
+				t.Errorf("Expected Spade, got %s", cards[i].Suit)
+			}
+		} else if i <= 25 {
+			if cards[i].Suit != Diamond {
+				t.Errorf("Expected Diamond, got %s", cards[i].Suit)
+			}
+		} else if i <= 38 {
+			if cards[i].Suit != Club {
+				t.Errorf("Expected Club, got %s", cards[i].Suit)
+			}
+		} else {
+			if cards[i].Suit != Heart {
+				t.Errorf("Expected Heart, got %s", cards[i].Suit)
+			}
+		}
+	}
 }
