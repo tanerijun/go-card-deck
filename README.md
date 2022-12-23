@@ -1,6 +1,6 @@
 # Go-Card-Deck
 
-A package to work with card decks. (Not intended for serious project)
+A package to work with poker deck. (Not intended for serious project)
 
 ## Installation
 
